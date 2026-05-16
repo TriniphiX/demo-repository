@@ -1,9 +1,22 @@
 {
-  "name": "demo-repo",
-  "version": "0.2.0",
-  "description": "A sample package.json",
-  "dependencies": {
-    "@primer/css": "17.0.1"
+  "name": "triniphix",
+  "version": "0.1.0",
+  "description": "A Node.js starter project for TriniphiX.",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
   },
-  "license": "MIT"
+  "keywords": [
+    "triniphix",
+    "nodejs",
+    "starter"
+  ],
+  "author": "TriniphiX",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
 }
