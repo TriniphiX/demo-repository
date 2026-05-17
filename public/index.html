@@ -3,70 +3,716 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TriniphiX</title>
+    <title>TriniphiX | Digital Strategy Roadmaps</title>
+    <meta
+      name="description"
+      content="A TriniphiX digital strategy roadmap landing page inspired by editorial agency layouts and branded with vibrant social-first colours."
+    />
     <style>
       :root {
         color-scheme: dark;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: #0a1020;
-        color: #f8fafc;
+        --ink: #12081f;
+        --ink-2: #1c1030;
+        --cream: #fff6e6;
+        --muted: #d9c9df;
+        --gold: #f7d154;
+        --orange: #ff7a18;
+        --pink: #ec1f6a;
+        --purple: #3a1c71;
+        --violet: #7446ff;
+        --line: rgba(255, 246, 230, 0.18);
+        --shadow: 0 2rem 6rem rgba(18, 8, 31, 0.36);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--ink);
+        color: var(--cream);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
-        min-height: 100vh;
         margin: 0;
-        display: grid;
-        place-items: center;
+        min-height: 100vh;
         background:
-          radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 32rem),
-          linear-gradient(135deg, #07111f 0%, #101827 100%);
+          radial-gradient(circle at 14% 8%, rgba(236, 31, 106, 0.26), transparent 24rem),
+          radial-gradient(circle at 88% 12%, rgba(247, 209, 84, 0.18), transparent 22rem),
+          linear-gradient(140deg, #12081f 0%, #1a0f2e 42%, #2b0e33 100%);
       }
 
-      main {
-        width: min(92vw, 58rem);
-        padding: 4rem;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 2rem;
-        background: rgba(15, 23, 42, 0.78);
-        box-shadow: 0 2rem 6rem rgba(2, 6, 23, 0.45);
+      body::before {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        content: "";
+        background-image:
+          linear-gradient(rgba(255, 246, 230, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 246, 230, 0.035) 1px, transparent 1px);
+        background-size: 5rem 5rem;
+        mask-image: linear-gradient(to bottom, #000 0%, transparent 78%);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-shell {
+        width: min(100% - 2rem, 1180px);
+        margin-inline: auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid var(--line);
+        background: rgba(18, 8, 31, 0.82);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1rem 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 11.5rem;
+        border-radius: 0.8rem;
+        box-shadow: 0 1rem 3rem rgba(236, 31, 106, 0.18);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(1rem, 3vw, 2.2rem);
+        color: var(--muted);
+        font-size: 0.88rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3rem;
+        padding: 0.85rem 1.2rem;
+        border: 1px solid rgba(247, 209, 84, 0.5);
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--gold), var(--orange) 46%, var(--pink));
+        color: #15081f;
+        font-weight: 900;
+        text-decoration: none;
+        box-shadow: 0 1rem 2.5rem rgba(236, 31, 106, 0.26);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(20rem, 0.72fr);
+        gap: clamp(2rem, 5vw, 5rem);
+        align-items: end;
+        padding: clamp(4rem, 9vw, 7.5rem) 0 clamp(3rem, 6vw, 5rem);
+      }
+
+      .breadcrumb {
+        display: flex;
+        gap: 0.6rem;
+        margin-bottom: 2rem;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
       }
 
       .eyebrow {
+        width: max-content;
         margin: 0 0 1rem;
-        color: #38bdf8;
-        font-size: 0.85rem;
-        font-weight: 700;
+        padding: 0.45rem 0.7rem;
+        border: 1px solid rgba(247, 209, 84, 0.38);
+        border-radius: 999px;
+        color: var(--gold);
+        font-size: 0.78rem;
+        font-weight: 900;
         letter-spacing: 0.18em;
         text-transform: uppercase;
       }
 
-      h1 {
+      h1,
+      h2,
+      h3 {
         margin: 0;
-        font-size: clamp(2.8rem, 8vw, 6.5rem);
+        letter-spacing: -0.06em;
+      }
+
+      h1 {
+        max-width: 12ch;
+        font-size: clamp(4rem, 11vw, 9rem);
+        line-height: 0.82;
+      }
+
+      .gradient-text {
+        background: linear-gradient(100deg, var(--gold), var(--orange), var(--pink), #b18cff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .lead {
+        max-width: 42rem;
+        color: var(--muted);
+        font-size: clamp(1.15rem, 2vw, 1.5rem);
+        line-height: 1.65;
+      }
+
+      .hero-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 31rem;
+        border: 1px solid rgba(255, 246, 230, 0.2);
+        border-radius: 2rem;
+        background:
+          linear-gradient(160deg, rgba(255, 246, 230, 0.14), rgba(255, 246, 230, 0.03)),
+          radial-gradient(circle at 20% 22%, rgba(247, 209, 84, 0.72), transparent 8rem),
+          radial-gradient(circle at 74% 18%, rgba(236, 31, 106, 0.78), transparent 9rem),
+          linear-gradient(140deg, var(--purple), #1b0b2d);
+        box-shadow: var(--shadow);
+      }
+
+      .roadmap-visual {
+        position: absolute;
+        inset: 2rem;
+        display: grid;
+        align-content: center;
+        gap: 1.3rem;
+      }
+
+      .roadmap-row {
+        display: grid;
+        grid-template-columns: 5.5rem 1fr;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .roadmap-row span:first-child {
+        color: #1a0b24;
+        font-size: 0.72rem;
+        font-weight: 950;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .track {
+        height: 3.1rem;
+        border-radius: 999px;
+        background: rgba(255, 246, 230, 0.16);
+      }
+
+      .fill {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--gold), var(--orange), var(--pink));
+      }
+
+      .meta-card {
+        position: absolute;
+        right: 1.5rem;
+        bottom: 1.5rem;
+        left: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.7rem;
+      }
+
+      .meta-card div {
+        min-height: 6rem;
+        padding: 1rem;
+        border: 1px solid rgba(255, 246, 230, 0.2);
+        border-radius: 1.2rem;
+        background: rgba(18, 8, 31, 0.62);
+      }
+
+      .meta-card strong {
+        display: block;
+        color: var(--gold);
+        font-size: 1.6rem;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 20rem;
+        gap: clamp(2rem, 5vw, 5rem);
+        padding-bottom: 5rem;
+      }
+
+      article {
+        border-top: 1px solid var(--line);
+      }
+
+      .author-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 1.4rem;
+        align-items: center;
+        padding: 1.5rem 0 2.5rem;
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .avatar {
+        display: grid;
+        width: 3.6rem;
+        height: 3.6rem;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold), var(--pink));
+        color: var(--ink);
+        font-weight: 950;
+      }
+
+      .section {
+        padding: clamp(2rem, 5vw, 4rem) 0;
+        border-top: 1px solid var(--line);
+      }
+
+      h2 {
+        max-width: 17ch;
+        margin-bottom: 1.2rem;
+        font-size: clamp(2.2rem, 5vw, 4.5rem);
         line-height: 0.92;
       }
 
-      p {
-        max-width: 44rem;
-        color: #cbd5e1;
-        font-size: clamp(1.1rem, 2vw, 1.35rem);
-        line-height: 1.7;
+      h3 {
+        margin-bottom: 0.6rem;
+        font-size: 1.35rem;
+        letter-spacing: -0.03em;
       }
 
-      a {
-        color: #7dd3fc;
-        font-weight: 700;
+      p,
+      li {
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+
+      .question-list,
+      .numbered {
+        display: grid;
+        gap: 0.8rem;
+        padding: 0;
+        list-style: none;
+      }
+
+      .question-list li,
+      .numbered li,
+      .related-card,
+      .download-panel,
+      .sidebar-card {
+        border: 1px solid var(--line);
+        border-radius: 1.4rem;
+        background: rgba(255, 246, 230, 0.06);
+      }
+
+      .question-list li,
+      .numbered li {
+        padding: 1rem 1.1rem;
+      }
+
+      .numbered {
+        counter-reset: roadmap;
+      }
+
+      .numbered li {
+        position: relative;
+        padding-left: 4.5rem;
+      }
+
+      .numbered li::before {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        display: grid;
+        width: 2.4rem;
+        height: 2.4rem;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold), var(--pink));
+        color: var(--ink);
+        content: counter(roadmap, decimal-leading-zero);
+        counter-increment: roadmap;
+        font-size: 0.8rem;
+        font-weight: 950;
+      }
+
+      blockquote {
+        margin: 2rem 0;
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+        border-left: 0.45rem solid var(--gold);
+        border-radius: 0 1.5rem 1.5rem 0;
+        background: rgba(247, 209, 84, 0.1);
+        color: var(--cream);
+        font-size: clamp(1.45rem, 3vw, 2.2rem);
+        font-weight: 850;
+        line-height: 1.25;
+      }
+
+      .download-panel {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1rem;
+        align-items: center;
+        margin-top: 2rem;
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+        background:
+          linear-gradient(135deg, rgba(247, 209, 84, 0.14), rgba(236, 31, 106, 0.14)),
+          rgba(255, 246, 230, 0.06);
+      }
+
+      aside {
+        position: sticky;
+        top: 6rem;
+        height: max-content;
+      }
+
+      .sidebar-card {
+        padding: 1.4rem;
+      }
+
+      .sidebar-card + .sidebar-card {
+        margin-top: 1rem;
+      }
+
+      .sidebar-card small {
+        color: var(--gold);
+        font-weight: 950;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .field {
+        display: grid;
+        gap: 0.45rem;
+        margin-top: 1rem;
+      }
+
+      label {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      input,
+      select {
+        width: 100%;
+        min-height: 3.15rem;
+        border: 1px solid var(--line);
+        border-radius: 0.9rem;
+        background: rgba(18, 8, 31, 0.78);
+        color: var(--cream);
+        padding: 0 1rem;
+        font: inherit;
+      }
+
+      .related {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .related-card {
+        overflow: hidden;
+      }
+
+      .related-card .thumb {
+        height: 9rem;
+        background:
+          radial-gradient(circle at 25% 25%, rgba(247, 209, 84, 0.86), transparent 4rem),
+          radial-gradient(circle at 72% 18%, rgba(236, 31, 106, 0.85), transparent 4rem),
+          linear-gradient(135deg, var(--purple), var(--ink));
+      }
+
+      .related-card div:last-child {
+        padding: 1rem;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        background: #0c0614;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr repeat(3, 1fr);
+        gap: 2rem;
+        padding: 3rem 0;
+      }
+
+      .footer-grid ul {
+        display: grid;
+        gap: 0.6rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .footer-grid a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .content-grid,
+        .download-panel,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        aside {
+          position: static;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .related {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .site-shell {
+          width: min(100% - 1rem, 1180px);
+        }
+
+        .brand img {
+          width: 9.5rem;
+        }
+
+        .hero-card {
+          min-height: 26rem;
+        }
+
+        .meta-card {
+          grid-template-columns: 1fr;
+        }
+
+        .roadmap-row {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
   <body>
+    <header class="topbar">
+      <nav class="site-shell nav" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="TriniphiX home">
+          <img src="/assets/triniphix-logo.svg" alt="TriniphiX" />
+        </a>
+        <div class="nav-links" aria-label="Site sections">
+          <a href="#services">Services</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#toolkit">Toolkit</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="button" href="#contact">Start a roadmap</a>
+      </nav>
+    </header>
+
     <main>
-      <p class="eyebrow">Node.js starter</p>
-      <h1>Welcome to TriniphiX.</h1>
-      <p>
-        This project is ready for your company website, API endpoints, and future product services.
-        Start the server with <code>npm start</code>, then visit <a href="/health">/health</a>.
-      </p>
+      <section class="site-shell hero" aria-labelledby="page-title">
+        <div>
+          <div class="breadcrumb" aria-label="Breadcrumb"><span>Home</span><span>/</span><span>Insights</span></div>
+          <p class="eyebrow">TriniphiX insight</p>
+          <h1 id="page-title">How to roadmap your <span class="gradient-text">digital strategy</span></h1>
+          <p class="lead">
+            Build a practical blueprint that turns scattered marketing, product and technology ideas into one aligned plan for growth.
+          </p>
+        </div>
+        <div class="hero-card" aria-label="Digital roadmap illustration">
+          <div class="roadmap-visual">
+            <div class="roadmap-row"><span>Discover</span><span class="track"><span class="fill" style="width: 58%"></span></span></div>
+            <div class="roadmap-row"><span>Design</span><span class="track"><span class="fill" style="width: 74%"></span></span></div>
+            <div class="roadmap-row"><span>Launch</span><span class="track"><span class="fill" style="width: 47%"></span></span></div>
+          </div>
+          <div class="meta-card">
+            <div><strong>3</strong><span>growth phases</span></div>
+            <div><strong>90</strong><span>day sprint view</span></div>
+            <div><strong>X</strong><span>social-first brand lens</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="site-shell content-grid">
+        <article>
+          <div class="author-row">
+            <span class="avatar">TX</span>
+            <span>TriniphiX Strategy Team</span>
+            <span>Digital roadmap guide</span>
+            <span>6 minute read</span>
+          </div>
+
+          <section class="section" id="roadmap">
+            <h2>What is a digital roadmap?</h2>
+            <p>
+              A digital roadmap is a high-level action plan that connects business goals with the digital initiatives needed to achieve them. It prioritises what to launch now, what to prepare next and what to measure throughout the journey.
+            </p>
+            <p>A strong roadmap should answer:</p>
+            <ul class="question-list">
+              <li>What outcomes are most important for the business?</li>
+              <li>Which channels, platforms and campaigns can move those outcomes?</li>
+              <li>What milestones, budgets, dependencies and owners are required?</li>
+              <li>How will performance, learning and return on investment be tracked?</li>
+            </ul>
+          </section>
+
+          <section class="section">
+            <h2>Why it matters</h2>
+            <p>
+              Without a roadmap, teams can end up reacting to trends instead of making deliberate progress. A shared plan creates alignment, reduces duplicated effort and gives stakeholders a clear view of where investment is going.
+            </p>
+            <blockquote>Roadmapping gives your team a horizon to aim for without locking every decision in stone.</blockquote>
+            <p>
+              The best plans stay flexible. Review the roadmap regularly, keep customer data close and adjust priorities as market conditions change.
+            </p>
+          </section>
+
+          <section class="section" id="services">
+            <h2>Build it in five moves</h2>
+            <ol class="numbered">
+              <li><strong>Define objectives.</strong> Turn business goals into measurable digital outcomes.</li>
+              <li><strong>Audit the current state.</strong> Review websites, social channels, analytics, content, campaigns and tools.</li>
+              <li><strong>Map initiatives.</strong> Group work into clear streams such as acquisition, retention, operations and experience.</li>
+              <li><strong>Prioritise by impact.</strong> Score each initiative by value, effort, dependency and timing.</li>
+              <li><strong>Communicate and review.</strong> Share a simple visual plan and set checkpoints to keep the work current.</li>
+            </ol>
+          </section>
+
+          <section class="section" id="toolkit">
+            <h2>Download the roadmap toolkit</h2>
+            <p>
+              Capture objectives, initiatives, owners and metrics in one practical planning framework. Use it to brief internal teams or start a strategy workshop with TriniphiX.
+            </p>
+            <div class="download-panel">
+              <div>
+                <h3>Digital Strategy Roadmap Toolkit</h3>
+                <p>Includes a milestone matrix, initiative scorecard and stakeholder alignment checklist.</p>
+              </div>
+              <a class="button" href="#contact">Get the toolkit</a>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>Keep reading</h2>
+            <div class="related" aria-label="Related articles">
+              <a class="related-card" href="#contact">
+                <span class="thumb"></span>
+                <div><h3>7 ways to validate a campaign idea</h3><p>Use quick experiments before scaling spend.</p></div>
+              </a>
+              <a class="related-card" href="#contact">
+                <span class="thumb"></span>
+                <div><h3>How to run a website audit</h3><p>Find experience, content and analytics gaps.</p></div>
+              </a>
+              <a class="related-card" href="#contact">
+                <span class="thumb"></span>
+                <div><h3>Social content that converts</h3><p>Plan posts around audience intent.</p></div>
+              </a>
+            </div>
+          </section>
+        </article>
+
+        <aside aria-label="Signup and contact panels">
+          <div class="sidebar-card">
+            <small>Newsletter</small>
+            <h3>Social-first growth notes</h3>
+            <p>Strategy, design and marketing observations from TriniphiX.</p>
+            <form>
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" />
+              </div>
+              <div class="field">
+                <button class="button" type="button">Sign up today</button>
+              </div>
+            </form>
+          </div>
+          <div class="sidebar-card" id="contact">
+            <small>Start here</small>
+            <h3>Need a clearer plan?</h3>
+            <p>Tell us your priority and we’ll shape the first roadmap sprint.</p>
+            <form>
+              <div class="field">
+                <label for="role">Role</label>
+                <select id="role" name="role">
+                  <option>Business owner</option>
+                  <option>Marketer</option>
+                  <option>Founder</option>
+                  <option>Operations lead</option>
+                </select>
+              </div>
+              <div class="field">
+                <button class="button" type="button">Book a strategy call</button>
+              </div>
+            </form>
+          </div>
+        </aside>
+      </div>
     </main>
+
+    <footer>
+      <div class="site-shell footer-grid">
+        <div>
+          <img src="/assets/triniphix-logo.svg" alt="TriniphiX" width="220" />
+          <p>Digital strategy, websites and content systems shaped for social-first brands.</p>
+        </div>
+        <div>
+          <h3>Services</h3>
+          <ul><li><a href="#services">Digital strategy</a></li><li><a href="#services">UX design</a></li><li><a href="#services">Web development</a></li></ul>
+        </div>
+        <div>
+          <h3>Outcomes</h3>
+          <ul><li><a href="#roadmap">Roadmaps</a></li><li><a href="#toolkit">Toolkits</a></li><li><a href="#contact">Workshops</a></li></ul>
+        </div>
+        <div>
+          <h3>Connect</h3>
+          <ul><li><a href="https://www.instagram.com/triniphix/">Instagram</a></li><li><a href="#contact">Contact</a></li><li><a href="/health">Health</a></li></ul>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

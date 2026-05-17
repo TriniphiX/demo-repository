@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-labelledby="title desc">
+  <title id="title">TriniphiX logo</title>
+  <desc id="desc">A bold TriniphiX wordmark with a gradient X mark inspired by warm social media colours.</desc>
+  <defs>
+    <linearGradient id="triGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a1c71" />
+      <stop offset="0.42" stop-color="#ec1f6a" />
+      <stop offset="0.72" stop-color="#ff7a18" />
+      <stop offset="1" stop-color="#f7d154" />
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="640" height="160" rx="32" fill="#12081f" />
+  <g transform="translate(32 26)">
+    <path d="M84 6 18 102h45l66-96H84Z" fill="url(#triGradient)" filter="url(#glow)" />
+    <path d="M20 6h46l63 96H84L20 6Z" fill="#fff6e6" opacity=".94" />
+    <circle cx="22" cy="103" r="10" fill="#f7d154" />
+    <circle cx="128" cy="103" r="10" fill="#ec1f6a" />
+  </g>
+  <text x="188" y="96" fill="#fff6e6" font-family="Inter, Arial, sans-serif" font-size="55" font-weight="900" letter-spacing="-2">Triniphi</text>
+  <text x="456" y="96" fill="url(#triGradient)" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="950" letter-spacing="-4">X</text>
+  <text x="190" y="123" fill="#f7d154" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="5">DIGITAL STRATEGY STUDIO</text>
+</svg>

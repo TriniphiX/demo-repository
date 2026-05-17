@@ -34,6 +34,6 @@ describe('TriniphiX app', () => {
     const body = await response.text();
 
     assert.equal(response.status, 200);
-    assert.match(body, /Welcome to TriniphiX/);
+    assert.match(body, /How to roadmap your/);
   });
 });
