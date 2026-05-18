@@ -36,4 +36,29 @@ describe('TriniphiX app', () => {
     assert.equal(response.status, 200);
     assert.match(body, /How to roadmap your/);
   });
+
+  it('serves URL-encoded static asset paths', async () => {
+    const response = await fetch(`${baseUrl}/assets%2Ftriniphix-logo.svg`);
+    const body = await response.text();
+
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('content-type'), 'image/svg+xml');
+    assert.match(body, /TriniphiX logo/);
+  });
+
+  it('returns not found instead of a server error for directory paths', async () => {
+    const response = await fetch(`${baseUrl}/assets`);
+    const payload = await response.json();
+
+    assert.equal(response.status, 404);
+    assert.equal(payload.error, 'Not Found');
+  });
+
+  it('does not serve URL-encoded traversal attempts', async () => {
+    const response = await fetch(`${baseUrl}/%2e%2e%2fpackage.json`);
+    const payload = await response.json();
+
+    assert.equal(response.status, 404);
+    assert.equal(payload.error, 'Not Found');
+  });
 });

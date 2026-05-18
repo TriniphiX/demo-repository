@@ -1,9 +1,9 @@
 import { readFile } from 'node:fs/promises';
-import { extname, join } from 'node:path';
+import { dirname, extname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const projectRoot = join(fileURLToPath(import.meta.url), '..', '..');
-const publicDirectory = join(projectRoot, 'public');
+const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const publicDirectory = resolve(projectRoot, 'public');
 
 const contentTypes = {
   '.css': 'text/css; charset=utf-8',
@@ -28,17 +28,20 @@ export function createApp() {
       }
 
       const filePath = resolvePublicPath(url.pathname);
+
+      if (!filePath) {
+        sendNotFound(response);
+        return;
+      }
+
       const body = await readFile(filePath);
       response.writeHead(200, {
         'Content-Type': contentTypes[extname(filePath)] ?? 'application/octet-stream'
       });
       response.end(body);
     } catch (error) {
-      if (error?.code === 'ENOENT') {
-        sendJson(response, 404, {
-          error: 'Not Found',
-          message: 'The requested TriniphiX resource does not exist.'
-        });
+      if (['ENOENT', 'ENOTDIR', 'EISDIR'].includes(error?.code)) {
+        sendNotFound(response);
         return;
       }
 
@@ -51,9 +54,30 @@ export function createApp() {
 }
 
 function resolvePublicPath(pathname) {
-  const normalizedPath = pathname === '/' ? '/index.html' : pathname;
-  const safePath = normalizedPath.replace(/^\/+/, '').replace(/\.\.(\/|\\)/g, '');
-  return join(publicDirectory, safePath);
+  try {
+    const normalizedPath = pathname === '/' ? '/index.html' : decodeURIComponent(pathname);
+    const requestedPath = resolve(publicDirectory, `.${normalizedPath}`);
+    const relativePath = relative(publicDirectory, requestedPath);
+
+    if (relativePath === '' || relativePath.startsWith('..') || relativePath.startsWith(sep)) {
+      return null;
+    }
+
+    return requestedPath;
+  } catch (error) {
+    if (error instanceof URIError) {
+      return null;
+    }
+
+    throw error;
+  }
+}
+
+function sendNotFound(response) {
+  sendJson(response, 404, {
+    error: 'Not Found',
+    message: 'The requested TriniphiX resource does not exist.'
+  });
 }
 
 function sendJson(response, statusCode, payload) {
